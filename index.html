@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta charset="utf-8" />
+    <title>AngularJS </title>
+
+    <link href="css/tablePaging.css" rel="stylesheet" />
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <link href="css/twitter.css" rel="stylesheet" />
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    <!--<script data-require="jquery@>=1.9.1 <3" data-semver="2.1.4" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <link data-require="bootstrap@*" data-semver="3.3.6" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" />
+    <script data-require="bootstrap@*" data-semver="3.3.6" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js"></script>-->
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+
+    <link href="css/style.css" rel="stylesheet" />
+
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.8/angular.js" data-semver="1.4.8"></script>
+    <script data-require="angular-route@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular-route.js"></script>
+    <script data-require="angular-animate@*" data-semver="1.4.8" src="https://code.angularjs.org/1.4.8/angular-animate.js"></script>
+    <link href="css/paging.css" rel="stylesheet" />
+    <script src="Scripts/jquery-3.3.1.js"></script>
+    <!--<script src="Scripts/appWithRouting.js"></script>-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.21/angular-ui-router.js"></script>
+    <script src="https://code.angularjs.org/1.6.0/angular-cookies.min.js"></script>
+
+    <!--Login srcipt-->
+    <script src="Scripts/Login.js"></script>
+    <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script>
+        $("input").on("change", function () {
+            this.setAttribute(
+                "data-date",
+                moment(this.value, "YYYY-MM-DD")
+                    .format(this.getAttribute("data-date-format"))
+            )
+        }).trigger("change")
+    </script>
+
+
+    <!--Login script-->
+    <script src="Scripts/Login.js"></script>
+
+    <!--Employee script-->
+    <script src="Scripts/EmployeeSrcipt/module.js"></script>
+    <script src="Scripts/EmployeeSrcipt/routing.js"></script>
+    <script src="Scripts/EmployeeSrcipt/controller.js"></script>
+    <script src="Scripts/EmployeeSrcipt/service.js"></script>
+    <script src="Scripts/EmployeeSrcipt/paging.js"></script>
+
+    <!--Product and training script-->
+    <script src="Scripts/TrainigScript/addTrainingScript.js"></script>
+    <script src="Scripts/TrainigScript/product.js"></script>
+    <script src="Scripts/TrainigScript/outstanding.js"></script>
+
+
+</head>
+
+<body>
+    <!--<div ng-controller="myCntrl">
+        hello {{ParseLogUser}}
+        Name:<input type="text" ng-model="ParseLogUser" />
+    </div>-->
+
+    <div ng-controller="MainCtrl">
+
+        <!--<div class="navbar navbar-inverse navbar-fixed-top">-->
+        <div class="navbar navbar-inverse ">
+            <div class="navbar-inner">
+
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!--<a class="brand" href="#">AngularJs</a>-->
+
+                <div class="nav-collapse">
+                    <ul class="nav">
+                        <li class="active"><a href="#/">Home</a></li>
+                        <li><a href="#/"> Training Information </a></li>
+                        <li><a href="#/viewProduct"> Product </a></li>
+                        <li><a href="#/outStanding"> Outstanding Training </a></li>
+                        <!--<li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Menu
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#/createEmployee">Create Employee</a></li>
+                                <li><a href="#/viewEmployee">View Empoyee</a></li>
+                                <li><a href="#/updateEmployee">Update Employee </a></li>
+                                <li><a href="#/captureTraining">Capture Training Information</a></li>
+                                <li><a href="#/viewTraining">View Training Info</a></li>
+                                <li><a href="#/updateTraining">Update Training</a></li>
+                                <li><a href="#/addProduct">Add Product</a></li>
+                                <li><a href="#/viewProduct">View Product</a></li>
+                            </ul>
+                        </li>-->
+                    </ul>
+
+                    <ul class="nav pull-right">
+                        <li><a href="Login.html">Logout</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+        <!--<div class="navbar navbar-default navbar-fixed-left">
+            <div class="container navbar-leftmr">
+                <div class="navbar-collapse collapse " id="navbar-main">
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#home">  Home </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#product"> Product </a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#/outStanding"> Outstanding Training </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-toggle" data-toggle="dropdown" id="dashboard">
+                                Admin <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="download">
+                                <li><a href="#/createEmployee">Create Employee</a></li>
+                                <li><a href="#/viewEmployee">View Empoyee</a></li>
+                                <li><a href="#/updateEmployee">Update Employee </a></li>
+                                <li><a href="#/captureTraining">Capture Training Information</a></li>
+                                <li><a href="#/viewTraining">View Training Info</a></li>
+                                <li><a href="#/updateTraining">Update Training</a></li>
+                                <li><a href="#/addProduct">Add Product</a></li>
+                                <li><a href="#/viewProduct">View Product</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="Login.html"> Logout </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>-->
+        <div class="container ngview" ng-view></div>
+
+    </div>
+</body>
+
+</html>

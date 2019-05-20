@@ -1,0 +1,92 @@
+﻿<link href="css/formStyle.css" rel="stylesheet" />
+
+<form>
+    <div class="container" ng-app="app" ng-controller="myCntrl">
+
+        <h1 style="text-align:center"> Update Employee</h1>
+
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Last Name" maxlength="30" class="redacted" ng-model="EmployeeList.lastName" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="First Name" ng-model="EmployeeList.firstName" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="date" placeholder="Date Of Birth" ng-model="EmployeeList.dateOfBirth | mvcDate: 'yyyy/MM/dd'" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="ID Number" ng-model="EmployeeList.identityNo" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Position" ng-model="EmployeeList.position" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Department" ng-model="EmployeeList.department" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Category" ng-model="EmployeeList.category" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Grade Number" ng-model="EmployeeList.gradeNo" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Extension Number" ng-model="EmployeeList.extensionNo" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Mobile Phone" ng-model="EmployeeList.mobilePhone" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Old Mobile Phone" ng-model="EmployeeList.oldMobilePhone" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Email Address" ng-model="EmployeeList.emailAddress1" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Consultant Name" ng-model="EmployeeList.consultantName" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Consultant AKA" ng-model="EmployeeList.consultantAKA" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Team Name" ng-model="EmployeeList.teamName" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Team Leader" ng-model="EmployeeList.teamLeader" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="TeamLeader Extension Number" ng-model="EmployeeList.teamLeaderExtensionNo" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="ID Badge" ng-model="EmployeeList.iDBadge" class="redacted" />
+            </div>
+        </div>
+        <div class="group">
+            <div class="left">
+                <input type="text" placeholder="Access Level" ng-model="EmployeeList.accessLevel" class="redacted" />
+            </div>
+            <div class="right">
+                <input type="text" placeholder="Username"  ng-model="EmployeeList.userName" class="redacted" />
+            </div>
+        </div>
+        <div>
+            <input type="button"   value="Update" ng-click="Edit()" class="redacted" />
+        </div>
+    </div>
+</form>

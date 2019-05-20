@@ -1,0 +1,238 @@
+﻿<html>
+<head>
+    <title></title>
+    <!--dgddgdg-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.js"></script>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" />
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="Scripts/JavaScript1.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCntrl">
+    <div>
+        <table class="table table-striped">
+
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="studList in ConsultantTraininglist">
+                    <!--<td ng-bind="studList.FirstName"></td>
+                    <td ng-bind="studList.LastName"></td>
+                    <td ><input type="submit" value="Edit" /></td>-->
+                    <td>{{studList.FirstName}}</td>
+                    <td>{{studList.LastName}}</td>
+                    <td>
+                        <!--<button class="btn btn-primary" type="button" ng-click="edit(record)">edit</button>-->
+                        <a class="btn" data-toggle="modal" ng-click="beginEdit(studList)">Edit</a>
+                        <button class="btn btn-danger" type="button" ng-click="delete($index)">delete</button>
+
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Start Edit Modal -->
+    <div id="edit" class="modal hide fade" tabindex="=1" role="dialog" aria-labelledby="editDialogLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="editDialogLabel">Edit Student</h3>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputTask">Task</label>
+                    <div class="controls">
+                        <input type="text" ng-model="ConsultantTraininglist.firstName" id="inputTask" placeholder="Task title" style="width: 150px;">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputDescription">Description</label>
+                    <div class="controls">
+                        <input type="text" ng-model="ConsultantTraininglist.lastName" id="inputDescription" placeholder="Description" style="width: 300px;">
+                    </div>
+                </div>
+
+
+
+
+
+
+                <div class="control-group">
+                    <div class="controls">
+                        <label class="checkbox">
+                            <input ng-model="ConsultantTraininglist.done" type="checkbox"> Done
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="editTask(ConsultantTraininglist)" data-dismiss="modal">Update Task</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+    </div>
+    <!-- End Edit Modal -->
+
+</body>
+</html>
+
+
+
+
+
+// java script
+
+
+var app = angular.module("myApp", []);
+
+app.controller("myCntrl", function ($scope, $http) {
+
+
+     //retrive Outsanding
+    $scope.fillList = function () {
+        $scope.studetnName = "";
+        var httpreq = {
+            method: 'POST',
+            url: 'http://localhost:7677/ProductService.asmx/GetStudent',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'dataType': 'json'
+            },
+            data: {}
+        }
+        $http(httpreq).success(function (response) {
+            $scope.ConsultantTraininglist = response.d;
+        })
+    };
+    $scope.fillList();
+
+
+
+         $scope.beginEdit = function(task) {
+        //alert(task.title);
+        //$scope.selectedTask = task;
+
+             $scope.ConsultantTraininglist.Id = task.Id;
+             $scope.ConsultantTraininglist.firstName = task.FirstName;
+             $scope.ConsultantTraininglist.lastName = task.LastName;
+
+        $('#edit').modal('show');
+
+      };
+
+    $scope.editTask = function () {
+
+        if (confirm("Are you sure want to update?")) {
+            var httpreq = {
+                method: 'POST',
+                url: 'http://localhost:7677/ProductService.asmx/Update',
+
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'dataType': 'json'
+                },
+                data: { Id: $scope.ConsultantTraininglist.Id, FirstName: $scope.ConsultantTraininglist.firstName, LastName: $scope.ConsultantTraininglist.lastName }
+            }
+            $http(httpreq).success(function (response) {
+                $scope.fillList();
+                alert("Update successfully.");
+            })
+
+
+
+        }
+
+
+        $('#edit').modal('hide');
+
+      };
+
+
+
+});
+
+
+
+
+
+<!-- Start Edit Modal -->
+<div id="edit" class="modal hide fade" tabindex="=1" role="dialog" aria-labelledby="editDialogLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="editDialogLabel">Edit Student</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <div class="control-group">
+                <label class="control-label" for="inputTask">Employee Name</label>
+                <div class="controls">
+                    <input readonly type="text" name="EmpId" placeholder="Employee Name" maxlength="30" class="redacted" ng-model="ConsultantTraininglist.empID" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputDescription">Product Name</label>
+                <div class="controls">
+                    <select ng-model="ConsultantTraininglist.prodId" class="redacted">
+
+                        <option ng-repeat="product in Productlist" value="{{product.Id}}">
+
+                            {{product.ProductSubType}}
+                        </option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputTask">Training Provided By</label>
+                <div class="controls">
+                    <input type="text" name="Completed" maxlength="30" placeholder="Training Provided By" ng-model="ConsultantTraininglist.providedBy" class="redacted" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputTask">Type Of Assessment</label>
+                <div class="controls">
+                    <input type="text" name="Completed" maxlength="30" placeholder="Type Of Assessment" class="redacted" ng-model="ConsultantTraininglist.typeOfAssessment" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputTask">Outcome Status</label>
+                <div class="controls">
+                    <select class="redacted" ng-model="ConsultantTraininglist.outcomeStatus" name="Last_Name" maxlength="30" ng-options="x for x in outcomeStatu" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="inputTask">Comment</label>
+                <div class="controls">
+                    <textarea class="redacted" type="text" id="fullName" name="fullName" placeholder="Comment.." ng-model="ConsultantTraininglist.comment" tabindex="5" rows="10"></textarea>
+                </div>
+            </div>
+
+
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input ng-model="ConsultantTraininglist.done" type="checkbox"> Done
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="updateConsultant(ConsultantTraininglist)" data-dismiss="modal">Update</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+</div>
+<!-- End Edit Modal -->
